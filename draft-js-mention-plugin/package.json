@@ -97,7 +97,7 @@
   "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/draft-js-plugins/draft-js-plugins.git"
+    "url": "git+https://github.com/fedealconada/draft-js-plugin.git"
   },
   "scripts": {
     "build": "npm run clean && npm run build:js && npm run build:css",

@@ -1,9 +1,14 @@
-const getRelativeParent = (element) => {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var getRelativeParent = function getRelativeParent(element) {
   if (!element) {
     return null;
   }
 
-  const position = window.getComputedStyle(element).getPropertyValue('position');
+  var position = window.getComputedStyle(element).getPropertyValue('position');
   if (position !== 'static') {
     return element;
   }
@@ -11,15 +16,20 @@ const getRelativeParent = (element) => {
   return getRelativeParent(element.parentElement);
 };
 
-const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
-  const relativeParent = getRelativeParent(popover.parentElement);
-  const relativeRect = {};
+var positionSuggestions = function positionSuggestions(_ref) {
+  var decoratorRect = _ref.decoratorRect,
+      popover = _ref.popover,
+      state = _ref.state,
+      props = _ref.props;
+
+  var relativeParent = getRelativeParent(popover.parentElement);
+  var relativeRect = {};
 
   if (relativeParent) {
     relativeRect.scrollLeft = relativeParent.scrollLeft;
     relativeRect.scrollTop = relativeParent.scrollTop;
 
-    const relativeParentRect = relativeParent.getBoundingClientRect();
+    var relativeParentRect = relativeParent.getBoundingClientRect();
     relativeRect.left = decoratorRect.left - relativeParentRect.left;
     relativeRect.top = decoratorRect.top - relativeParentRect.top;
   } else {
@@ -30,11 +40,11 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
     relativeRect.left = decoratorRect.left;
   }
 
-  const left = relativeRect.left + relativeRect.scrollLeft;
-  const top = relativeRect.top + relativeRect.scrollTop;
+  var left = relativeRect.left + relativeRect.scrollLeft;
+  var top = relativeRect.top + relativeRect.scrollTop;
 
-  let transform;
-  let transition;
+  var transform = void 0;
+  var transition = void 0;
   if (state.isActive) {
     if (props.suggestions.size > 0) {
       transform = 'scale(1)';
@@ -46,12 +56,12 @@ const positionSuggestions = ({ decoratorRect, popover, state, props }) => {
   }
 
   return {
-    left: `${left}px`,
-    top: `${top}px`,
-    transform,
+    left: left + 'px',
+    top: top + 'px',
+    transform: transform,
     transformOrigin: '1em 0%',
-    transition,
+    transition: transition
   };
 };
 
-export default positionSuggestions;
+exports.default = positionSuggestions;
